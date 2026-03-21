@@ -97,6 +97,20 @@ body{
 
 }
 
+.mobile-SIA {
+  display: none; 
+  margin-top: 50px;
+}
+
+@media (max-width: 500px) {
+  .loading-bg {
+    background-image: url("GameMainBackground.png");
+  }
+  .mobile-SIA {
+    display: block;
+    width: 100%;
+  }
+}
 
 .dots::after{
     content:"";
