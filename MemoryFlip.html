@@ -11,77 +11,66 @@
 
 <body>
 
-<nav class="navbar">
-    <div class="nav-left">
+    <nav>
         <button id="backBtn" class="back-btn">BACK</button>
+    </nav>
+
+ 
+<img src="MenuButton.png" id="pauseBtn" class="pause-btn">
+
+<div class="top-ui">
+    <div class="ui-box">LEVEL<br><span id="levelText">1</span></div>
+    <div class="ui-box">TIME<br><span id="timerText">30</span></div>
+    <button id="nextBtn">NEXT</button>
+</div>
+
+<div class="form-wrapper">
+    <div class="instruction-panel">
+        <b>HOW TO PLAY</b><br><br>
+
+        • Flip 2 cards at a time<br>
+        • Match all pairs to win<br>
+        • Cards flip back if wrong<br><br>
+
+        <b>GOAL</b><br><br>
+
+        • Complete 5 levels<br>
+        • Each level adds more pairs<br>
+        • Beat the timer to win<br><br>
+
+        <b>TIPS</b><br><br>
+
+        • Memorize card positions<br>
+        • Be fast but accurate<br>
     </div>
-    
 
-    <div class="nav-middle">
-        <div class="ui-box">LEVEL<br><span id="levelText">1</span></div>
-        <div class="ui-box">TIME<br><span id="timerText">30</span></div>
-        <button id="nextBtn">NEXT</button>
+    <div class="form-panel" id="formPanel">
+        <input type="text" placeholder="FIRST NAME" id="fname">
+        <input type="text" placeholder="LAST NAME" id="lname">
+        <input type="text" placeholder="NUMBER (optional)" id="number">
+
+        <select id="type">
+            <option value="">ARE YOU STUDENT?</option>
+            <option value="yes">YES</option>
+            <option value="no">NO</option>
+        </select>
+
+        <select id="grade" style="display:none;">
+            <option value="">GRADE LEVEL</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+            <option value="COLLEGE">COLLEGE</option>
+        </select>
+
+        <select id="strand" style="display:none;">
+            <option value="">STRAND/TRACK</option>
+        </select>
+
+        <img src="Start.png" id="startBtn" class="start-img">
     </div>
 
-    <div class="nav-right">
-        <img src="MenuButton.png" id="pauseBtn" class="pause-btn">
-    </div>
-    
-</nav>
+</div>
 
-<main class="main-container">
-
-    <section class="form-wrapper">
-        <div class="ins instruction-panel ">
-            <b>HOW TO PLAY</b><br><br>
-            • Flip 2 cards at a time<br>
-            • Match all pairs to win<br>
-            • Cards flip back if wrong<br><br>
-
-            <b>GOAL</b><br><br>
-            • Complete 5 levels<br>
-            • Each level adds more pairs<br>
-            • Beat the timer to win<br><br>
-
-            <b>TIPS</b><br><br>
-            • Memorize card positions<br>
-            • Be fast but accurate<br>
-        </div>
-
-        <div class="ins form-panel" id="formPanel">
-            <div class="form-panel-con">
-                <input type="text" placeholder="FIRST NAME" id="fname">
-                <input type="text" placeholder="LAST NAME" id="lname">
-                <input type="text" placeholder="NUMBER (optional)" id="number">
-
-                <select id="type">
-                    <option value="">ARE YOU STUDENT?</option>
-                    <option value="yes">YES</option>
-                    <option value="no">NO</option>
-                </select>
-
-                <select id="grade">
-                    <option value="">GRADE LEVEL</option>
-                    <option value="11">11</option>
-                    <option value="12">12</option>
-                    <option value="COLLEGE">COLLEGE</option>
-                </select>
-
-                <select id="strand">
-                    <option value="">STRAND/TRACK</option>
-                </select>
-            </div>
-
-            <div class="start-btn-con">
-                <img src="Start.png" id="startBtn" class="start-img">   
-            </div>
-            
-        </div>
-    </section>
-
-    <section class="game-board" id="gameBoard"></section>
-
-</main>
 
 <div class="pause-overlay" id="pauseOverlay">
     <div class="pause-panel">
@@ -94,8 +83,10 @@
     </div>
 </div>
 
+
 <div class="result-overlay" id="resultOverlay">
     <div class="result-panel" id="resultPanel">
+
         <div class="result-info">
             <div id="resultTitle">YOU WIN</div><br>
             <div>TIME: <span id="finalTime"></span>s</div>
@@ -107,14 +98,16 @@
             <img src="HomeButton.png" id="resultHome" class="result-btn-img">
             <img src="Settings2.png" id="resultSettings" class="result-btn-img">
         </div>
+
     </div>
 </div>
 
-<footer class="copyright">
-    © 2026 Skill Issue Arcade. All Rights Reserved.
-</footer>
+<div class="game-board" id="gameBoard"></div>
 
-
+    <!-- FOOTER -->
+    <div class="copyright">
+        © 2026 Skill Issue Arcade. All Rights Reserved.
+    </div>
 <script>
 const gameBoard = document.getElementById('gameBoard');
 const levelText = document.getElementById('levelText');

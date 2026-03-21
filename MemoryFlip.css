@@ -1,233 +1,180 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html, body {
-height: 100%;
-}
-
 body {
-    min-height: 100%;
-    background-image: url('GameMainBackground.png');
-        background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    display: flex;
-    flex-direction: column;
-    font-family: 'Press Start 2P', cursive;
+    margin:0;
+    height:100vh;
+    background:#111 url('GameMainBackground.png') center/cover no-repeat;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+    font-family:'Press Start 2P', cursive;
 }
 
-main {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
+.top-ui{
+    position:fixed;
+    top:20px;
+    left:50%;
+    transform:translateX(-50%);
+    display:flex;
+    gap:20px;
+    z-index:50;
 }
 
-/* NAVBAR */
-.navbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 15px;
-    flex-wrap: wrap;
-}
-
-.nav-left,
-.nav-right {
-    flex: 1;
-    display: flex;
-    align-items: center;
-}
-
-.nav-right {
-    justify-content: flex-end;
-}
-
-.nav-middle {
-    flex: 2;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
-}
-
-/* UI BOX */
-.ui-box {
+.ui-box{
     background:#1a030adb;
     border:3px solid #ffcc00;
-    padding:10px clamp(15px, 4vw, 60px);
+    padding:10px 100px;
     color:#ffcc00;
-    font-size:clamp(10px, 2vw, 15px);
+    font-size:15px;
     box-shadow:4px 4px 0 #000;
     text-align:center;
 }
 
-/* BUTTONS */
 .back-btn {
-    padding:8px 12px;
+    position:fixed;
+    top:20px;
+    left:20px;
+    padding:10px 15px;
     border:3px solid #ffcc00;
     background:#1a030a;
     color:#ffcc00;
+    font-family:'Press Start 2P', cursive;
+    font-size:14px;
     cursor:pointer;
-    font-size:clamp(10px, 2vw, 14px);
+    z-index:110;
+    display:none;
     box-shadow:4px 4px 0 #000;
+    text-align:center;
 }
 
-.back-btn:hover {
+.back-btn:hover{
     background:#d18c01;
+    transform:translate(-1px, -1px);
 }
 
-.pause-btn {
-    width:clamp(40px, 6vw, 60px);
+.back-btn:active{
+    transform:translate(1px, 1px);
+}   
+
+.pause-btn{
+    position:fixed;
+    top:20px;
+    right:20px;
+    width:60px;
     cursor:pointer;
+    image-rendering:pixelated;
+    z-index:60;
     display:none;
 }
 
-#nextBtn {
+#nextBtn{
     display:none;
-    padding:8px 12px;
+    cursor:pointer;
+    padding:10px 15px;
     background:#ffcc00;
     border:3px solid #000;
     font-family:'Press Start 2P', cursive;
-    cursor:pointer;
-    font-size:clamp(10px, 2vw, 14px);
 }
 
-/* FORM */
-.form-wrapper {
-    flex: 1;
+.form-panel{
+    position:relative;
+    background:#1a030aba;
+    border:4px solid #ffcc00;
+    padding:20px;
     display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:20px;
-    flex-wrap:wrap;
-    padding:20px;
+    flex-direction:column;
+    gap:10px;
+    color:#fff;
+    min-width:250px;
 }
 
-.form-panel {
-    width: min(90vw, 650px);
-    max-width:500px;
-    background:#1a030aba;
-    border:4px solid #ffcc00;
-    padding:20px;
-}
-.instruction-panel {
-    width: clamp(220px, 80vw, 300px);
-    max-width: 300px;
-    background:#1a030aba;
-    border:4px solid #ffcc00;
-    padding: clamp(30px, 3vw, 20px);
-    color:#ffcc00;
-    font-size:10px;
-    line-height:1.6;
-}
-
-/* INPUTS */
 .form-panel input,
-.form-panel select {
-    width:100%;
-    padding:8px;
-    font-size:12px;
+.form-panel select{
+    padding:5px 10px;
+    padding-right: 100px;
+    font-size:15px;
     font-family:'Press Start 2P', cursive;
 }
 
-.form-panel {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.start-btn-con {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/* START BUTTON */
-.start-img {
+.start-img{
     width:180px;
     cursor:pointer;
+    image-rendering:pixelated;
     align-self:center;
+    margin-top:10px;
 }
 
-/* GAME BOARD */
-.game-board {
+.game-board{
+    position:absolute;
+    top:100px;
+    bottom:20px;
+    left:50%;
+    transform:translateX(-50%);
     display:grid;
     gap:10px;
-    width:100%;
-    max-width:900px;
-    padding:10px;
-    margin:0 auto;
+    justify-content:center;
+    align-content:center;
+    width:30vw;
+    height:calc(100vh - 140px);
+    z-index:50;
 }
 
-/* CARDS */
-.card {
+.card{
     width:100%;
     aspect-ratio:5/6;
     perspective:1000px;
 }
 
-.card-inner {
+.card-inner{
     width:100%;
     height:100%;
     transition:0.5s;
     transform-style:preserve-3d;
 }
 
-.card.flipped .card-inner {
+.card.flipped .card-inner{
     transform:rotateY(180deg);
 }
 
-.card-front, 
-.card-back {
+.card-front, .card-back{
     position:absolute;
     width:100%;
     height:100%;
     backface-visibility:hidden;
 }
 
-.card-front img, 
-.card-back img {
+.card-front img, .card-back img{
     width:100%;
     height:100%;
 }
 
-.card-back {
+.card-back{
     transform:rotateY(180deg);
 }
 
-/* OVERLAYS */
-.pause-overlay,
-.result-overlay {
+.pause-overlay{
     position:fixed;
     top:0;
     left:0;
     width:100%;
     height:100%;
     background:rgba(0,0,0,0.7);
-    display:none;
+    display:flex;
     align-items:center;
     justify-content:center;
+    z-index:300;
+    display:none;
 }
 
-/* PANELS */
-.pause-panel,
-.result-panel {
-    width:90%;
-    max-width:600px;
-    aspect-ratio:3/2;
-    background-size:contain;
-    background-repeat:no-repeat;
-    background-position:center;
+.pause-panel{
     position:relative;
+    width:600px;
+    height:400px;
+    background:url('PauseBackground.png') center/contain no-repeat;
+    image-rendering:pixelated;
 }
 
-/* PAUSE BUTTONS */
-.pause-buttons {
+.pause-buttons{
     position:absolute;
     bottom:120px;
     left:50%;
@@ -236,22 +183,45 @@ main {
     gap:20px;
 }
 
-.pause-btn-img {
+.pause-btn-img{
     width:120px;
     cursor:pointer;
+    image-rendering:pixelated;
 }
 
-.continue-btn {
+.continue-btn{
     position:absolute;
     bottom:25px;
     left:50%;
     transform:translateX(-50%);
     width:240px;
     cursor:pointer;
+    image-rendering:pixelated;
 }
 
-/* RESULT */
-.result-info {
+.result-overlay{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.7);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:400;
+    display:none;
+}
+
+.result-panel{
+    position:relative;
+    width:600px;
+    height:400px;
+    background:url('LoseBackground.png') center/contain no-repeat;
+    image-rendering:pixelated;
+}
+
+.result-info{
     position:absolute;
     top:150px;
     width:100%;
@@ -260,7 +230,7 @@ main {
     font-size:16px;
 }
 
-.result-buttons {
+.result-buttons{
     position:absolute;
     bottom:50px;
     left:50%;
@@ -269,67 +239,42 @@ main {
     gap:15px;
 }
 
-.result-btn-img {
-    width:100px;
+.result-btn-img{
+    width:100px; 
     cursor:pointer;
+    image-rendering:pixelated;
+}
+.form-wrapper{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    display:flex;
+    gap:20px;
+    align-items:flex-start;
+    z-index:100;
+    max-width:90vw;
 }
 
+
+.instruction-panel{
+    background:#1a030aba;
+    border:4px solid #ffcc00;
+    padding:20px;
+    width:300px;
+    color:#ffcc00;
+    font-size:10px;
+    line-height:1.6;
+    box-shadow:4px 4px 0 #000;
+}
 .copyright{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            font-size:7px;
-            color:#ffcc00;
-            opacity:0.8;
-            text-shadow:2px 2px #000;
-            pointer-events:none;
-            font-family:'Press Start 2P', cursive;
-            min-height: 80px;
-        }
-
-@media (max-width: 600px) {
-
-    .navbar {
-        flex-direction: column;
-        gap:10px;
-    }
-
-    .nav-left,
-    .nav-right,
-    .nav-middle {
-        flex: none;
-        width:100%;
-    }
-
-    .ui-box {
-        padding:8px 20px;
-        font-size:10px;
-    }
-
-    .pause-btn {
-        width:40px;
-    }
-
-    .pause-buttons {
-        bottom:80px;
-        gap:10px;
-    }
-
-    .pause-btn-img {
-        width:80px;
-    }
-
-    .continue-btn {
-        width:160px;
-    }
-
-    .result-buttons {
-        bottom:30px;
-        gap:10px;
-    }
-
-    .result-btn-img {
-        width:70px;
-    }
+    position:fixed;
+    bottom:10px;
+    left:50%;
+    transform:translateX(-50%);
+    font-size:7px;
+    color:#ffcc00;
+    opacity:0.8;
+    text-shadow:2px 2px #000;
+    pointer-events:none;
 }
